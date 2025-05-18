@@ -1,0 +1,45 @@
+# Основной фреймворк
+fastapi==0.110.0
+uvicorn[standard]==0.29.0
+
+# Асинхронная работа с БД
+asyncpg==0.29.0
+sqlalchemy==2.0.30
+sqlalchemy-utils==0.41.2
+alembic==1.13.1
+
+# Авторизация и безопасность
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+bcrypt==4.1.2
+python-multipart==0.0.9
+
+# Миграции
+alembic==1.13.1
+
+# Многоязычность и форматы
+Babel==2.14.0
+
+# Обработка очередей (для уведомлений)
+aio_pika==9.4.1  # или kombu, но aio_pika идеально для async
+
+# Валидация и вспомогательные зависимости
+pydantic==2.7.1
+pydantic-settings==2.2.1
+
+# Работа с датой и временем (если нужно)
+python-dateutil==2.9.0.post0
+
+# Уведомления (моки или реальная интеграция)
+httpx==0.27.0  # для async запросов к email API, Telegram и т.д.
+
+# Логирование и трассировка (опционально)
+loguru==0.7.2
+opentelemetry-api==1.24.0
+opentelemetry-sdk==1.24.0
+opentelemetry-instrumentation-fastapi==0.45b0
+
+# Для разработки и тестирования
+pytest==8.1.1
+pytest-asyncio==0.23.6
+httpx==0.27.0
