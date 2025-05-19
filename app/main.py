@@ -2,12 +2,13 @@ from fastapi import FastAPI
 from fastapi.openapi.utils import get_openapi
 
 from app.config import Base, engine
-from app.gateway.routers import user_router, auth_router
+from app.gateway.routers import user_router, auth_router, account_router
 
 app = FastAPI(title="ioka-test")
 
 app.include_router(user_router, prefix="/users")
 app.include_router(auth_router, prefix="/auth")
+app.include_router(account_router, prefix="/accounts")
 
 
 def custom_openapi():
