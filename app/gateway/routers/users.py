@@ -2,8 +2,10 @@ from typing import List
 from uuid import UUID
 from fastapi import Depends, APIRouter, HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.domains.users.model import User
 from app.domains.users.service import UserService
 from app.dto.users import UserCreateDTO, UserReadDTO, UserUpdateDTO
+from app.infrastructure.users.dependencies import get_current_user
 from app.repository.users import UserRepository
 from app.config import get_db
 
@@ -15,6 +17,11 @@ async def register_user(data: UserCreateDTO, db: AsyncSession = Depends(get_db))
     service = UserService(UserRepository(db))
     user = await service.register(data=data)
     return UserReadDTO(**user.__dict__)
+
+
+@router.get("/me", response_model=UserReadDTO)
+async def read_current_user(current_user: User = Depends(get_current_user)):
+    return UserReadDTO(**current_user.__dict__)
 
 
 @router.get("/{user_id}", response_model=UserReadDTO)

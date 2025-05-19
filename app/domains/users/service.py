@@ -58,3 +58,6 @@ class UserService(IUserService):
 
     async def delete_user(self, user_id: UUID):
         await self._repo.delete(user_id)
+
+    async def verify_password(self, plain: str, hashed: str) -> bool:
+        return pwd_context.verify(plain, hashed)
